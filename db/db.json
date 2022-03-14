@@ -4,7 +4,11 @@
         "text":"Test text"
     },
     {
-        "title":"Delilah Title",
-        "text":"Test Delilah text"
+        "title":"Note #1",
+        "text":"This is a Test"
+    },
+    {
+        "title":"Note #2",
+        "text":"This is a Test"
     }
 ]
