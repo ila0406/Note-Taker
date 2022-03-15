@@ -27,6 +27,7 @@ app.get("/notes", (req, res) => {
 });
 
 // Wildcard route to direct users to a 404 page
+// Instructor said this was acceptable and * should not return 'index.html' as hw requirements request
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, 'public/pages/404.html'))
 );
