@@ -2,5 +2,5 @@
   { "title": "Note #1", "text": "Some note like stuff", "id": 1 },
   { "title": "Note #2", "text": "Different sort of note", "id": 2 },
   { "title": "Note #3", "text": "More note text", "id": 3 },
-  { "title": "Note #4", "text": "FooBar is my note", "id": 4 }
+  { "title": "Note #4", "text": "This is a foobar", "id": 4 }
 ]
