@@ -1,1 +1,6 @@
-[{"title":"h","text":"h","id":"lxe8OJwHV6LuCaOg2ai7J"}]
+[
+  { "title": "Note #1", "text": "Some note like stuff", "id": 1 },
+  { "title": "Note #2", "text": "Different sort of note", "id": 2 },
+  { "title": "Note #3", "text": "More note text", "id": 3 },
+  { "title": "Note #4", "text": "t", "id": 4 }
+]
