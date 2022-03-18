@@ -11,11 +11,10 @@ const PORT = process.env.PORT || 3001;
 app.use(clog);
 
 // Middleware for parsing JSON and urlencoded form data
-
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use('/api', api);  //Most be after JSON or it can't store it
+app.use(express.urlencoded({ extended: true }));  //helps front end and back end talk in the same language
 app.use(express.static('public'));
-app.use('/api', api);
 app.use('/', html);
 
 app.listen(PORT, () =>

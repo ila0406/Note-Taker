@@ -1,55 +1,48 @@
 const router = require('express').Router();
 const fs = require('fs');
+const someData = require('../db/db.json');
+const { nanoid } = require('nanoid');
 
 // Sends the Notes data when the API is called
 // Current route /api/notes:id
 router.get('/notes', (req, res) => {
-    fs.readFile('./db/db.json', 'utf-8', (error, data) => {
-        if (error) throw error;
 
-        // Parse Data from Response.json
-        res.json(JSON.parse(data));
-    });
+    res.json(someData);
+
 });
 
 // Reads the note entered by the user and appends it to the JSON file
 // Current route /api/notes:id
 router.post('/notes', (req, res) => {
-    fs.readFile('./db/db.json', 'utf-8', (error, data) => {
-        if (error) throw error;
-        let readAndAppend = JSON.parse(data);
-        readAndAppend.push(req.body);
+    // Create new object to put re.body in so that we can add ID
+    const newObject = req.body;
+    newObject.id = nanoid();
+    someData.push(newObject);
 
-        // console.log(`readAndAppend`,readAndAppend);
-        
-        fs.writeFile('./db/db.json', JSON.stringify(readAndAppend), (error) => {
-            if (error) return error;
-        });
+    // Writes newly created Note object to JSON file
+    fs.writeFile('./db/db.json', JSON.stringify(someData), (error) => {
+        if (error) return error;
     });
+
     res.end();
 });
 
 // Deletes the selected note from the page
 // Current route /api/notes:id
 router.delete('/notes/:id', (req, res) => {
+
+    // Stores the selected ID in a new variable    
     const findNote = req.params.id;
-    fs.readFile('./db/db.json', 'utf-8', (error, data) => {
-        if (error) throw error;
-
-        let readAndDelete = JSON.parse(data);
-        // console.log(`readAndDelete`,readAndDelete);
-        // console.log(`findNote`, findNote);
-
-        // Find the note associated with the selected ID and remove it from JSON
-        for (let i = 0; i < readAndDelete.length; i++) {
-            if (findNote == readAndDelete[i].id) {
-                readAndDelete.splice(i,1);
-                fs.writeFile('./db/db.json', JSON.stringify(readAndDelete), (error) => {
-                    if (error) throw error;
-                });
-            };
+    
+    // Find the note associated with the selected ID and remove it from JSON
+    for (let i = 0; i < someData.length; i++) {
+        if (findNote == someData[i].id) {
+            someData.splice(i,1);
+            fs.writeFile('./db/db.json', JSON.stringify(someData), (error) => {
+                if (error) throw error;
+            });
         };
-    });
+    };
     res.end();
 });
 
